@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block title %}Ana Sayfa - Harun Emirhan Bostancı{% endblock %}
+
+{% block content %}
+<!-- Hero Bölümü -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+                <img src="{{ url_for('static', filename='images/avatar.jpg') }}" alt="Profil Fotoğrafı" class="rounded-circle mb-4" style="width: 200px; height: 200px; object-fit: cover;">
+                <h1 class="hero-title">Merhaba, Ben Harun Emirhan Bostancı</h1>
+                <p class="hero-subtitle">Veri Bilimci & Python Geliştirici</p>
+                <p class="lead mb-4">Veriyle düşünmeyi, üretmeyi ve paylaşmayı seven biriyim. Python, veri analizi ve makine öğrenimiyle yakından ilgileniyorum. Teknik gelişmelerin yanı sıra, bu alandaki deneyimlerimi ve çıkarımlarımı da yazılarla paylaşmaya çalışıyorum.</p>
+                <a href="#projects" class="btn btn-primary">Projelerimi İncele</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Yetenekler Bölümü -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Yeteneklerim</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card project-card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="bi bi-code-square"></i>
+                            Programlama Dilleri
+                        </h5>
+                        <ul class="skills-list">
+                            <li><i class="bi bi-python"></i> Python (pandas, numpy, matplotlib, scikit-learn)</li>
+                            <li><i class="bi bi-database"></i> SQL (SQLite)</li>
+                            <li><i class="bi bi-terminal"></i> Temel bash</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card project-card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="bi bi-graph-up"></i>
+                            Veri Bilimi & Analiz
+                        </h5>
+                        <ul class="skills-list">
+                            <li><i class="bi bi-search"></i> EDA (Exploratory Data Analysis)</li>
+                            <li><i class="bi bi-gear"></i> Veri temizleme ve ön işleme</li>
+                            <li><i class="bi bi-diagram-3"></i> K-means, karar ağaçları, regresyon</li>
+                            <li><i class="bi bi-shield-check"></i> Anomaly detection</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card project-card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="bi bi-display"></i>
+                            Görselleştirme
+                        </h5>
+                        <ul class="skills-list">
+                            <li><i class="bi bi-bar-chart"></i> Matplotlib, seaborn, Plotly</li>
+                            <li><i class="bi bi-laptop"></i> Streamlit dashboard geliştirme</li>
+                            <li><i class="bi bi-pie-chart"></i> İnteraktif grafikler</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projeler Bölümü -->
+<section id="projects" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Öne Çıkan Projeler</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card project-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Veri Analizi Projesi</h5>
+                        <p class="card-text">Python ve veri bilimi kütüphaneleri kullanarak gerçek dünya verilerini analiz eden, görselleştiren ve içgörüler çıkaran bir proje.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">GitHub'da Gör</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card project-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Makine Öğrenmesi Modeli</h5>
+                        <p class="card-text">Scikit-learn kullanarak geliştirilen, gerçek dünya problemlerine çözüm üreten makine öğrenmesi modelleri.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">GitHub'da Gör</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card project-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Web Uygulaması</h5>
+                        <p class="card-text">Flask ile geliştirilen, veri analizi ve görselleştirme özellikleri içeren interaktif web uygulaması.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">GitHub'da Gör</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- İletişim Bölümü -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 text-center">
+                <h2 class="mb-4">İletişime Geçin</h2>
+                <p class="mb-4">Projeler, işbirliği veya sorularınız için benimle iletişime geçebilirsiniz.</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="btn btn-primary">
+                        <i class="bi bi-envelope"></i> E-posta
+                    </a>
+                    <a href="#" class="btn btn-primary">
+                        <i class="bi bi-github"></i> GitHub
+                    </a>
+                    <a href="#" class="btn btn-primary">
+                        <i class="bi bi-linkedin"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

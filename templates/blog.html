@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Blog - Kişisel Portfolyo{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h1 class="mb-4">Blog Yazıları</h1>
+        
+        {% for post in posts %}
+        <article class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title">{{ post.title }}</h2>
+                <p class="card-text text-muted">
+                    <small>{{ post.created_at.strftime('%d %B %Y') }}</small>
+                </p>
+                <p class="card-text">{{ post.content[:200] }}...</p>
+                <a href="{{ url_for('blog_post', slug=post.slug) }}" class="btn btn-primary">Devamını Oku</a>
+            </div>
+        </article>
+        {% else %}
+        <div class="alert alert-info">
+            Henüz blog yazısı bulunmuyor.
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 
