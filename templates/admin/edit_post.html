@@ -1,0 +1,107 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Blog Yazısını Düzenle{% endblock %}
+
+{% block head %}
+<script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{% if post %}Blog Yazısını Düzenle{% else %}Yeni Blog Yazısı{% endif %}</h2>
+    
+    <form method="POST" enctype="multipart/form-data" class="mt-4">
+        {{ form.hidden_tag() }}
+        
+        <div class="mb-3">
+            {{ form.title.label(class="form-label") }}
+            {{ form.title(class="form-control") }}
+            {% if form.title.errors %}
+            <div class="text-danger">
+                {% for error in form.title.errors %}
+                <small>{{ error }}</small>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.content.label(class="form-label") }}
+            {{ form.content(class="form-control", rows=10) }}
+            {% if form.content.errors %}
+            <div class="text-danger">
+                {% for error in form.content.errors %}
+                <small>{{ error }}</small>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.category.label(class="form-label") }}
+            {{ form.category(class="form-control") }}
+            {% if form.category.errors %}
+            <div class="text-danger">
+                {% for error in form.category.errors %}
+                <small>{{ error }}</small>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.tags.label(class="form-label") }}
+            {{ form.tags(class="form-control", placeholder="Etiketleri virgülle ayırın") }}
+            {% if form.tags.errors %}
+            <div class="text-danger">
+                {% for error in form.tags.errors %}
+                <small>{{ error }}</small>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.cover_image.label(class="form-label") }}
+            {{ form.cover_image(class="form-control") }}
+            {% if post and post.cover_image %}
+            <div class="mt-2">
+                <img src="{{ url_for('static', filename='uploads/' + post.cover_image) }}" 
+                     alt="Mevcut kapak fotoğrafı" 
+                     class="img-thumbnail" 
+                     style="max-height: 200px;">
+            </div>
+            {% endif %}
+            {% if form.cover_image.errors %}
+            <div class="text-danger">
+                {% for error in form.cover_image.errors %}
+                <small>{{ error }}</small>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            <div class="form-check">
+                {{ form.is_published(class="form-check-input") }}
+                {{ form.is_published.label(class="form-check-label") }}
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+            <a href="{{ url_for('admin.posts') }}" class="btn btn-secondary">İptal</a>
+        </div>
+    </form>
+</div>
+
+<!-- CKEditor -->
+<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#content'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+{% endblock %} 

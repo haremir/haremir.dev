@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Blog Yazıları</h1>
+    
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                {% if post.cover_image %}
+                <img src="{{ url_for('static', filename='uploads/' + post.cover_image) }}" 
+                     class="card-img-top" 
+                     alt="{{ post.title }}"
+                     style="height: 200px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text text-muted">
+                        {{ post.created_at.strftime('%d %B %Y') }}
+                    </p>
+                    <p class="card-text">{{ post.excerpt }}</p>
+                    <a href="{{ url_for('blog.post', slug=post.slug) }}" class="btn btn-primary">Devamını Oku</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

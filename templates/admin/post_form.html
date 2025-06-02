@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}{% if post %}Yazıyı Düzenle{% else %}Yeni Yazı{% endif %} - Admin Paneli{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title mb-4">
+                        {% if post %}Yazıyı Düzenle{% else %}Yeni Yazı{% endif %}
+                    </h1>
+                    
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Başlık</label>
+                            <input type="text" class="form-control" id="title" name="title" 
+                                   value="{{ post.title if post else '' }}" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="content" class="form-label">İçerik</label>
+                            <textarea class="form-control" id="content" name="content" rows="10" required>{{ post.content if post else '' }}</textarea>
+                            <div class="form-text">Markdown formatında yazabilirsiniz.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Kapak Görseli</label>
+                            {% if post and post.image_path %}
+                            <div class="mb-2">
+                                <img src="{{ url_for('static', filename=post.image_path) }}" alt="Mevcut görsel" class="img-thumbnail" style="max-height: 200px;">
+                            </div>
+                            {% endif %}
+                            <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                            <div class="form-text">Maksimum dosya boyutu: 16MB</div>
+                        </div>
+                        
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                {% if post %}Güncelle{% else %}Oluştur{% endif %}
+                            </button>
+                            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">İptal</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

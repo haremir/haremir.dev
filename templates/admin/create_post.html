@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Yeni Blog Yazısı{% endblock %}
+
+{% block head %}
+<script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Yeni Blog Yazısı</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="title" class="form-label">Başlık</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="mb-3">
+            <label for="cover_image" class="form-label">Kapak Fotoğrafı</label>
+            <input type="file" class="form-control" id="cover_image" name="cover_image" accept="image/*">
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">İçerik</label>
+            <textarea class="form-control" id="content" name="content" rows="10" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Yayınla</button>
+    </form>
+</div>
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#content'), {
+            toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|', 'outdent', 'indent', '|', 'blockQuote', 'insertTable', 'undo', 'redo'],
+            language: 'tr'
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+{% endblock %} 
