@@ -8,10 +8,13 @@
         <h1 class="mb-4">Blog Yazıları</h1>
         
         {% for post in posts %}
-        <article class="card mb-4">
+        <article class="card blog-card mb-4">
+            {% if post.image_path %}
+            <img src="{{ url_for('static', filename=post.image_path) }}" alt="{{ post.title }}" class="blog-image">
+            {% endif %}
             <div class="card-body">
                 <h2 class="card-title">{{ post.title }}</h2>
-                <p class="card-text text-muted">
+                <p class="blog-meta">
                     <small>{{ post.created_at.strftime('%d %B %Y') }}</small>
                 </p>
                 <p class="card-text">{{ post.content[:200] }}...</p>
